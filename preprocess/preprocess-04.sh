@@ -35,9 +35,9 @@ dwibiascorrect ants ${SUB}_dwi_den_gib_eddy.mif ${SUB}_dwi_den_gib_eddy_unb.mif 
 mrconvert ${SUB}_dwi_den_gib_eddy_unb.mif ${SUB}_dwi_den_gib_eddy_unb.nii.gz -fslgrad ${SUB}_dwi.bvec ${SUB}_dwi.bval
 
 # Brain mask
-dwiextract ${SUB}_dwi_den_gib.mif - -bzero | mrmath - mean temp.mif -axis 3 | mrconvert - temp.nii
+dwiextract ${SUB}_dwi_den_gib.mif - -bzero | mrmath - mean temp.nii -axis 3
 bet temp.nii ${SUB}_brain -m -f 0.2
-rm temp.mif
+rm temp.nii
 
 # Convert mask .nii.gz to .mif
 mrconvert ${SUB}_brain_mask.nii.gz ${SUB}_brain_mask.mif
